@@ -1,8 +1,37 @@
-# Welcome to your Expo app 👋
+# Wallet Connect - Multi-Chain Crypto Wallet App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native (Expo) mobile app that connects to MetaMask via WalletConnect, fetches balances across multiple EVM chains, shows live USD prices, and sends transactions.
 
-## Get started
+## Demo
+
+![Wallet Connect Demo](assets/demo.gif)
+
+## Features
+
+- Connect to MetaMask (and other wallets) via WalletConnect
+- View connected accounts across multiple EVM chains
+- Fetch native + ERC-20 token balances using Alchemy
+- Live USD market prices via CoinGecko
+- Send ETH transactions signed by the wallet
+
+## Tech Stack
+
+| Library | Purpose |
+|---------|---------|
+| Expo (v54) | React Native framework |
+| Reown AppKit | WalletConnect integration |
+| Ethers Adapter | EVM blockchain provider |
+| MMKV | Session persistence |
+| Alchemy API | Blockchain data (balances, metadata) |
+| CoinGecko API | Market prices (USD) |
+
+## Supported Chains
+
+**Mainnets:** Ethereum, Polygon, Arbitrum, Optimism, Base, BNB Smart Chain, Linea
+
+**Testnets:** Sepolia, Polygon Amoy, Arbitrum Sepolia, Base Sepolia, Optimism Sepolia
+
+## Getting Started
 
 1. Install dependencies
 
@@ -10,41 +39,22 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Set up API keys in:
+   - `config/appkit.ts` — Reown Project ID from [cloud.reown.com](https://cloud.reown.com)
+   - `services/alchemy.ts` — Alchemy API key from [dashboard.alchemy.com](https://dashboard.alchemy.com)
+   - `services/coingecko.ts` — CoinGecko API key from [coingecko.com/en/api](https://www.coingecko.com/en/api)
+
+3. Prebuild and run
 
    ```bash
-   npx expo start
+   npx expo prebuild
+   npx expo run:ios
+   # or
+   npx expo run:android
    ```
 
-In the output, you'll find options to open the app in a
+> Requires a dev client build since this uses native modules (MMKV, WalletConnect).
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Documentation
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+See [ARTICLE.md](ARTICLE.md) for a detailed technical walkthrough of how everything works.
